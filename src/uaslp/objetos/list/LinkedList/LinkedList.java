@@ -1,5 +1,6 @@
 package uaslp.objetos.list.LinkedList;
 
+import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
 
 public class LinkedList implements List {
@@ -131,6 +132,53 @@ public class LinkedList implements List {
                 }
             }
             current = current.getNext();
+        }
+    }
+
+    private static class Node {
+        Node next;
+        Node previous;
+        String data;
+
+        public Node(String data) {
+            this.data = data;
+        }
+        public void setNext(Node next) {
+            this.next = next;
+        }
+        public void setPrevious(Node previous) {
+            this.previous = previous;
+        }
+        public void setData(String data) {
+            this.data = data;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+        public Node getPrevious() {
+            return previous;
+        }
+        public String getData() {
+            return data;
+        }
+    }
+
+    private static class LinkedListIterator implements Iterator {
+        Node node;
+
+        public LinkedListIterator(Node node){
+            this.node = node;
+        }
+
+        public boolean hasNext(){
+            return node != null;
+        }
+
+        public String next(){
+            String data = node.getData();
+            node = node.getNext();
+            return data;
         }
     }
 }
